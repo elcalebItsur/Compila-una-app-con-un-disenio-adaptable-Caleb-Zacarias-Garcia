@@ -188,10 +188,12 @@ private fun ReplyAppContent(
                     )
                 }
                 AnimatedVisibility(visible = navigationType == ReplyNavigationType.BOTTOM_NAVIGATION) {
+                    val bottomNavigationContentDescription = stringResource(R.string.navigation_bottom)
                     ReplyBottomNavigationBar(
                         currentTab = replyUiState.currentMailbox,
                         onTabPressed = onTabPressed,
-                        navigationItemContentList = navigationItemContentList
+                        navigationItemContentList = navigationItemContentList,
+                        modifier = Modifier.testTag(bottomNavigationContentDescription)
                     )
                 }
             }
@@ -214,7 +216,7 @@ fun ReplyListAndDetailContent(
         )
         ReplyDetailsScreen(
             replyUiState = replyUiState,
-            modifier = Modifier.weight(1f),
+            modifier = Modifier.weight(1f).testTag(stringResource(id = R.string.details_screen)),
             onBackButtonClicked = { activity.finish() }
         )
     }
